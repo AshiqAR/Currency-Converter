@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Currency Convertor</title>
+    <link rel="stylesheet" href="styles.css" />
+    <script src="config.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="box">
+        <h2>Currency Convertor</h2>
+        <div id="form-container">
+          <div class="form-item">
+            <div class="selection-container">
+              <label for="from-currency-selector">From:</label>
+              <select
+                name="baseCurrency"
+                class="currency-selector"
+                id="from-currency-selector"
+              ></select>
+            </div>
+
+            <div class="swap-icon-container">
+              <img id="exchange-icon" src="exchange-light.png" alt=">" />
+            </div>
+
+            <div class="selection-container">
+              <label for="to-currency-selector">To:</label>
+              <select
+                name="baseCurrency"
+                class="currency-selector"
+                id="to-currency-selector"
+              ></select>
+            </div>
+          </div>
+
+          <div class="amount-container">
+            <label for="base-amount-input">Amount:</label>
+            <input
+              type="number"
+              name="baseAmount"
+              class="amount-input-field"
+              id="base-amount-input"
+              placeholder="Enter Amount"
+              required
+            />
+            <p id="base-amount-error"></p>
+          </div>
+
+          <div class="amount-container">
+            <label for="target-amount-input">Converted Amount:</label>
+            <input
+              type="text"
+              name="targetAmount"
+              class="amount-input-field"
+              id="target-amount-input"
+              placeholder="Converted Amount"
+              disabled
+            />
+          </div>
+
+          <div class="button-container">
+            <input type="submit" value="Convert" id="convert-button" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

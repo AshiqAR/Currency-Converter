@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=PT+Sans&family=Varela+Round&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Inter", sans-serif;
+}
+
+html {
+    font-size: 16px;
+}
+
+.container {
+    background-color: #F3F4F6;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 20px;
+}
+
+.box {
+    border: 2px solid #D1D5DB;
+    border-radius: 10px;
+    background-color: white;
+    padding: 20px;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.form-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin: 10px 0;
+}
+
+.selection-container {
+    display: flex;
+    flex-direction: column;
+    width: 45%;
+}
+
+.selection-container > label {
+    font-size: 0.8rem;
+    margin-bottom: 5px;
+}
+
+.currency-selector {
+    font-size: 1rem;
+    padding: 4px 7px;
+    background-color: #D1D5DB;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+}
+
+.currency-selector:focus {
+    outline: none;
+}
+
+.currency-selector:hover {
+    cursor: pointer;
+    background-color: #D1D5D0;
+}
+
+.swap-icon-container {
+    margin: 0 10px;
+    display: flex;
+    align-items: center;
+}
+
+#exchange-icon {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.amount-container {
+    width: 100%;
+    margin: 10px 0;
+}
+
+.amount-container > label {
+    font-size: 0.8rem;
+    margin-bottom: 5px;
+    display: block;
+}
+
+#base-amount-input,#target-amount-input {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #D1D5DB;
+    border-radius: 5px;
+}
+
+#taget-amount-input {
+    background-color: #F3F4F6;
+}
+
+input[type="number"]::-webkit-inner-spin-button{
+    display: none;
+}
+
+.button-container {
+    margin-top: 20px;
+}
+
+.button-container > input[type="submit"] {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #4F46E5;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.button-container > input[type="submit"]:hover {
+    background-color: #6862df;
+}
+
+@media (max-width: 600px) {
+    .form-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .selection-container {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .currency-selector {
+        width: 100%;
+    }
+
+    .swap-icon-container {
+        margin: 10px 0;
+    }
+}
