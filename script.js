@@ -77,11 +77,11 @@ function checkCurrencyExchangeHistory(fromCurrency, toCurrency) {
 }
 
 function validateAmount(amount) {
-  if (isNaN(amount)) {
-    return "Amount must be a number";
-  } else if (amount === "") {
+  if (amount === "") {
     return "Amount must not be empty";
-  } else if (amount <= 0) {
+  } else if (isNaN(amount)) {
+    return "Amount must be a number";
+  } else if (Number(amount) <= 0) {
     return "Amount must be greater than 0";
   }
   return "";
@@ -108,50 +108,36 @@ var currencies_static_list = [
   "BRL",
   "CAD",
   "CNY",
-  "HKD",
-  "IDR",
-  "ILS",
-  "INR",
-  "KRW",
-  "MXN",
-  "MYR",
-  "NZD",
-  "PHP",
-  "SGD",
-  "THB",
-  "ZAR",
 ];
 
 document.addEventListener("DOMContentLoaded", async () => {
-  // const currencies = await fetchCurrencies();
+  // var currencies = await fetchCurrencies();
   // console.log(Object.keys(currencies["data"]));
-  // if(Object.keys(currencies["data"]).length == 0 || !currencies){
+  // if (Object.keys(currencies["data"]).length == 0 || !currencies) {
   //   currencies = currencies_static_list;
+  // } else {
+  //   currencies = Object.keys(currencies["data"]);
   // }
-  const currencies = currencies_static_list;
+  var currencies = currencies_static_list;
 
   const fromCurrencySelect = document.getElementById("from-currency-selector");
   const toCurrencySelect = document.getElementById("to-currency-selector");
   const targetAmountInput = document.getElementById("target-amount-input");
   const baseAmountInput = document.getElementById("base-amount-input");
   const baseAmountErrorP = document.getElementById("base-amount-error");
+  const fetchingDataStatusUpdate = document.getElementById("fetching-status-p");
 
   currencies.forEach((currency) => {
     const option = document.createElement("option");
     option.value = currency;
     option.text = currency;
     fromCurrencySelect.appendChild(option);
-  });
-
-  currencies.forEach((currency) => {
-    const option = document.createElement("option");
-    option.value = currency;
-    option.text = currency;
-    toCurrencySelect.appendChild(option);
+    toCurrencySelect.appendChild(option.cloneNode(true));
   });
 
   const convertButton = document.getElementById("convert-button");
   convertButton.addEventListener("click", async () => {
+    fetchingDataStatusUpdate.style.display = "block";
     const fromCurrency = fromCurrencySelect.value;
     const toCurrency = toCurrencySelect.value;
     const amount = baseAmountInput.value;
@@ -159,6 +145,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const error = validateAmount(amount);
     if (error !== "") {
       baseAmountErrorP.innerHTML = error;
+      fetchingDataStatusUpdate.style.display = "none";
       return;
     }
     baseAmountErrorP.innerHTML = "";
@@ -172,15 +159,18 @@ document.addEventListener("DOMContentLoaded", async () => {
     } else {
       targetAmountInput.value = "Error converting currency";
     }
+    fetchingDataStatusUpdate.style.display = "none";
   });
 
   baseAmountInput.addEventListener("input", () => {
-    if (validateAmount(baseAmountInput.value) === "") {
+    const error = validateAmount(baseAmountInput.value);
+    if (error === "") {
       baseAmountErrorP.innerHTML = "";
     } else {
-      baseAmountErrorP.innerHTML = validateAmount(baseAmountInput.value);
+      baseAmountErrorP.innerHTML = error;
       return;
     }
+
     const fromCurrency = fromCurrencySelect.value;
     const toCurrency = toCurrencySelect.value;
     const amount = baseAmountInput.value;
@@ -188,9 +178,25 @@ document.addEventListener("DOMContentLoaded", async () => {
     let conversionRate = checkCurrencyExchangeHistory(fromCurrency, toCurrency);
     if (conversionRate) {
       const convertedAmount = amount * conversionRate;
-      targetAmountInput.value = `${convertedAmount.toFixed(4)}`;
+      targetAmountInput.value = `${convertedAmount.toFixed(2)}`;
     } else {
-      targetAmountInput.value = "Error converting currency";
+      targetAmountInput.value =
+        "Convertion rate not available, please click convert";
+    }
+  });
+
+  fromCurrencySelect.addEventListener("change", () => {
+    const fromCurrency = fromCurrencySelect.value;
+    const toCurrency = toCurrencySelect.value;
+    const amount = baseAmountInput.value;
+
+    let conversionRate = checkCurrencyExchangeHistory(fromCurrency, toCurrency);
+    if (conversionRate) {
+      const convertedAmount = amount * conversionRate;
+      targetAmountInput.value = `${convertedAmount.toFixed(2)}`;
+    } else {
+      targetAmountInput.value =
+        "Convertion rate not available, please click convert";
     }
   });
 });

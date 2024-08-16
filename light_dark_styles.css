@@ -1,0 +1,51 @@
+:root {
+    --bg-color: #F3F4F6;
+    --text-color: #000;
+    --box-bg-color: #FFF;
+    --box-border-color: #D1D5DB;
+    --input-bg-color: #D1D5DB;
+    --button-bg-color: #4F46E5;
+    --button-hover-bg-color: #6862df;
+}
+
+body.dark-mode {
+    --bg-color: #262626;
+    --text-color: #B4B4B4;
+    --box-bg-color: #343434;
+    --box-border-color: #6e6262;
+    --input-bg-color: #323232;
+    --button-bg-color: #659CA3;
+    --button-hover-bg-color: #397a83;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+.container{
+    background-color: var(--bg-color);
+}
+
+.box {
+    border: 2px solid var(--box-border-color);
+    background-color: var(--box-bg-color);
+}
+
+.currency-selector{
+    background-color: var(--input-bg-color);
+    border: none;
+}
+
+#base-amount-input, #target-amount-input {
+    background-color: var(--input-bg-color);
+    color: var(--text-color);
+}
+
+.button-container > input[type="submit"] {
+    background-color: var(--button-bg-color);
+}
+
+.button-container > input[type="submit"]:hover {
+    background-color: var(--button-hover-bg-color);
+}

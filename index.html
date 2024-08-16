@@ -3,14 +3,31 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Currency Convertor</title>
+    <title>Currency Converter</title>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="light_dark_styles.css" />
     <script src="config.js"></script>
   </head>
-  <body>
-    <div class="container">
+  <body class="light-mode">
+    <nav class="navbar light-mode">
+      <ul class="nav-container">
+        <li class="nav-item" id="brand-logo">
+          <p class="brand-name">Converter</p>
+        </li>
+        <li class="nav-item" id="night-mode-icon">
+          <img
+            src="night-mode.png"
+            alt=""
+            width="20"
+            height="20"
+            onclick="toggleDarkMode()"
+          />
+        </li>
+      </ul>
+    </nav>
+    <div class="container light-mode">
       <div class="box">
-        <h2>Currency Convertor</h2>
+        <h2 class="light-mode">Currency Converter</h2>
         <div id="form-container">
           <div class="form-item">
             <div class="selection-container">
@@ -59,6 +76,7 @@
               placeholder="Converted Amount"
               disabled
             />
+            <p id="fetching-status-p">Fetching Current Exchange Rates...</p>
           </div>
 
           <div class="button-container">
@@ -69,5 +87,6 @@
     </div>
 
     <script src="script.js"></script>
+    <script src="light_darkMode_script.js"></script>
   </body>
 </html>

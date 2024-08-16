@@ -11,6 +11,48 @@ html {
     font-size: 16px;
 }
 
+.navbar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #aeaaf9b6;
+    color: white;
+    height: 10vh;
+}
+
+.nav-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+#night-mode-icon{
+    width: 30px;
+    cursor: pointer;
+}
+
+nav>ul{
+    list-style-type: none;
+    display: inline;
+    margin-right: 20px;
+}
+
+.brand-name{
+    font-size: 1.4rem;
+    font-weight: 700;
+}
+
+.brand-name:hover{
+    cursor: default;
+}
+
 .container {
     background-color: #F3F4F6;
     display: flex;
@@ -140,6 +182,20 @@ input[type="number"]::-webkit-inner-spin-button{
 
 .button-container > input[type="submit"]:hover {
     background-color: #6862df;
+}
+
+#base-amount-error{
+    color: red;
+    font-size: 0.7rem;
+    margin: 5px 2px;
+}
+
+#fetching-status-p{
+    display: none;
+    margin-top: 10px;
+    font-size: 0.8rem;
+    text-align: center;
+    color: #4F46E5;
 }
 
 @media (max-width: 600px) {
